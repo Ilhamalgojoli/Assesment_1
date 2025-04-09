@@ -5,4 +5,5 @@
     <string name="tanggal_masuk">Stock in Date : </string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="empty">Add List Product</string>
 </resources>

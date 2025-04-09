@@ -76,6 +76,21 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
+
+    if (data.isEmpty()) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = stringResource(R.string.empty),
+                fontFamily = poppins,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 16.sp
+            )
+        }
+    }
+
     Box(
         modifier = modifier
             .padding(6.dp)
