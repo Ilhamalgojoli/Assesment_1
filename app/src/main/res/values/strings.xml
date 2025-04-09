@@ -16,4 +16,10 @@
     <string name="date">Date</string>
     <string name="placeholder">DD/MM/YY</string>
     <string name="edit_fragment">Edit Product</string>
+    <string name="about_screen">About App</string>
+    <string name="app_description">
+        Stock Manager - This stock management application is designed to help users record, monitor, and manage inventory or products available in the store.
+        Users can add, edit, and delete product data with a simple and efficient interface.
+        \n\nVersion 1.0.0 | © 2025 Stock Manager.\n\nDeveloped by Ilham Al Gojali.
+    </string>
 </resources>
