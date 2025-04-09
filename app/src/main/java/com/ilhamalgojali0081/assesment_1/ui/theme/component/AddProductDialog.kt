@@ -1,11 +1,17 @@
 package com.ilhamalgojali0081.assesment_1.ui.theme.component
 
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +20,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -34,6 +42,10 @@ fun AddProductDialog(
 
     var quantity by rememberSaveable { mutableStateOf("") }
     var quanityError by rememberSaveable { mutableStateOf(false) }
+
+    var selectedDate by rememberSaveable { mutableStateOf<Long?>(null) }
+    var dateError by rememberSaveable { mutableStateOf(false) }
+    var isShowModal by rememberSaveable { mutableStateOf(false) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -89,6 +101,37 @@ fun AddProductDialog(
                         imeAction = ImeAction.Done
 
                     )
+                )
+            }
+            OutlinedTextField(
+                value = selectedDate?.let { convertMillisToDate(it) } ?: "",
+                onValueChange = {  },
+                label = { Text(
+                    text = stringResource(R.string.date),
+                    fontFamily = poppins,
+                    fontWeight = FontWeight.SemiBold
+                ) },
+                placeholder = { Text(text = stringResource(R.string.placeholder)) },
+                trailingIcon = {
+                    Icon(Icons.Default.DateRange, contentDescription = "Selected one")
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+                    .pointerInput(selectedDate){
+                        awaitEachGesture {
+                            awaitFirstDown(pass = PointerEventPass.Initial)
+                            val upEvent = waitForUpOrCancellation(pass = PointerEventPass.Initial)
+                            if (upEvent != null){
+                                isShowModal = true
+                            }
+                        }
+                    }
+            )
+            if (isShowModal){
+                DatePickerModal(
+                    onDateSelected = { selectedDate = it },
+                    onDismis =  { isShowModal = false  }
                 )
             }
         },

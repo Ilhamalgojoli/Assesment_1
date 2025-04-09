@@ -13,4 +13,6 @@
     <string name="add_product">Add Product</string>
     <string name="name">Name</string>
     <string name="input_error">Input not valid</string>
+    <string name="date">Date</string>
+    <string name="placeholder">DD/MM/YY</string>
 </resources>
