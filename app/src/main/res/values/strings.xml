@@ -22,4 +22,6 @@
         Users can add, edit, and delete product data with a simple and efficient interface.
         \n\nVersion 1.0.0 | © 2025 Stock Manager.\n\nDeveloped by Ilham Al Gojali.
     </string>
+    <string name="share">Share</string>
+    <string name="share_product">Share</string>
 </resources>

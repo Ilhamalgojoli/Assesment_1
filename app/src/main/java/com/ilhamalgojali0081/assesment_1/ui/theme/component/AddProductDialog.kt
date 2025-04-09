@@ -34,6 +34,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.model.Category
@@ -87,9 +88,9 @@ fun AddProductDialog(
                         name = it
                         nameError = it.isEmpty()
                     },
+                    singleLine = true,
                     trailingIcon = { IconPicker(nameError) },
                     supportingText = { ErrorHint(nameError) },
-                    singleLine = true,
                     label = {
                         Text(
                             text = stringResource(R.string.name),
@@ -126,56 +127,56 @@ fun AddProductDialog(
 
                     )
                 )
-            }
-            OutlinedTextField(
-                value = selectedDate?.let { convertMillisToDate(it) } ?: "",
-                onValueChange = {  },
-                label = { Text(
-                    text = stringResource(R.string.date),
-                    fontFamily = poppins,
-                    fontWeight = FontWeight.SemiBold
-                ) },
-                placeholder = { Text(text = stringResource(R.string.placeholder)) },
-                trailingIcon = {
-                    Icon(Icons.Default.DateRange, contentDescription = "Selected one")
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-                    .pointerInput(selectedDate){
-                        awaitEachGesture {
-                            awaitFirstDown(pass = PointerEventPass.Initial)
-                            val upEvent = waitForUpOrCancellation(pass = PointerEventPass.Initial)
-                            if (upEvent != null){
-                                isShowModal = true
+                OutlinedTextField(
+                    value = selectedDate?.let { convertMillisToDate(it) } ?: "",
+                    onValueChange = {  },
+                    label = { Text(
+                        text = stringResource(R.string.date),
+                        fontFamily = poppins,
+                        fontWeight = FontWeight.SemiBold
+                    ) },
+                    placeholder = { Text(text = stringResource(R.string.placeholder)) },
+                    trailingIcon = {
+                        Icon(Icons.Default.DateRange, contentDescription = "Selected one")
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp)
+                        .pointerInput(selectedDate){
+                            awaitEachGesture {
+                                awaitFirstDown(pass = PointerEventPass.Initial)
+                                val upEvent = waitForUpOrCancellation(pass = PointerEventPass.Initial)
+                                if (upEvent != null){
+                                    isShowModal = true
+                                }
                             }
                         }
-                    }
-            )
-            if (isShowModal){
-                DatePickerModal(
-                    onDateSelected = { selectedDate = it },
-                    onDismis =  { isShowModal = false  }
                 )
-            }
-            Row(
-                modifier = Modifier
-                    .padding(bottom = 8.dp)
-                    .border(2.dp, Color.Gray, RoundedCornerShape(4.dp))
-            ){
-                categoryProduct.forEach{ product ->
-                    CategoryOption(
-                        label = product.name,
-                        isSelected = selectedCategories == product,
-                        modifier = Modifier
-                            .selectable(
-                                selected = selectedCategories == product,
-                                onClick = { selectedCategories = product },
-                                role = Role.RadioButton
-                            )
-                            .weight(1f)
-                            .padding(16.dp)
+                if (isShowModal){
+                    DatePickerModal(
+                        onDateSelected = { selectedDate = it },
+                        onDismis =  { isShowModal = false  }
                     )
+                }
+                Row(
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .border(2.dp, Color.Gray, RoundedCornerShape(4.dp))
+                ){
+                    categoryProduct.forEach{ product ->
+                        CategoryOption(
+                            label = product.name,
+                            isSelected = selectedCategories == product,
+                            modifier = Modifier
+                                .selectable(
+                                    selected = selectedCategories == product,
+                                    onClick = { selectedCategories = product },
+                                    role = Role.RadioButton
+                                )
+                                .weight(1f)
+                                .padding(16.dp)
+                        )
+                    }
                 }
             }
         },
@@ -217,4 +218,10 @@ fun AddProductDialog(
             }
         },
     )
+}
+
+@Preview
+@Composable
+fun AddProductPreview(){
+    AddProductDialog(onAdd = { }, onDismiss = {})
 }
