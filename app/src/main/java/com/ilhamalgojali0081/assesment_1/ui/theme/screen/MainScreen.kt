@@ -1,6 +1,5 @@
 package com.ilhamalgojali0081.assesment_1.ui.theme.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +23,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -99,7 +97,7 @@ fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
                             selectedProduct = product
                             showDialogEditProduct = true
                         },
-                        onDelete = {  }
+                        onDelete = { selectProduct -> data.remove(selectProduct) }
                     )
                 }
             }

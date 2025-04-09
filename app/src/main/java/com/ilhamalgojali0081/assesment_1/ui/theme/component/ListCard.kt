@@ -88,7 +88,7 @@ fun ListCard(product: Product,onEdit: (Product) -> Unit,onDelete: (Product) -> U
                         Text(text = stringResource(R.string.edit))
                     }
                     Button(
-                        onClick = {  },
+                        onClick = { onDelete(product) },
                         modifier = Modifier.padding(start = 4.dp),
                         contentPadding = PaddingValues(vertical = 10.dp, horizontal = 10.dp)
                     ) {
