@@ -44,7 +44,6 @@ import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val data = remember { mutableStateListOf<Product>() }
-    var showDialogAddProduct by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -62,23 +61,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             )
-        },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { showDialogAddProduct = true }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Add,
-                    contentDescription = stringResource(R.string.add_product),
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            }
-            if (showDialogAddProduct){
-                AddProductDialog(
-                    onDismiss = { showDialogAddProduct = false },
-                    onAdd = { newProduct -> data.add(newProduct) }
-                )
-            }
         }
     ) { innerPadding ->
         MainContent(
@@ -93,18 +75,32 @@ fun MainScreen(modifier: Modifier = Modifier) {
 @Composable
 fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
 
+    var showDialogAddProduct by remember { mutableStateOf(false) }
+
     Box(
         modifier = modifier
             .padding(6.dp)
             .fillMaxSize()
     ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LazyColumn(modifier = Modifier.weight(1f)) {
+                items(data) { product ->
+                    ListCard(
+                        product = product,
+                    )
+                }
+            }
+        }
+
         if (data.isEmpty()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = stringResource(R.string.empty),
@@ -114,10 +110,21 @@ fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
                 )
             }
         }
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(data) { product ->
-                ListCard(product = product)
-            }
+
+        FloatingActionButton(
+            onClick = { showDialogAddProduct = true },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+        ) {
+            Icon(Icons.Default.Add, contentDescription = "add")
+        }
+
+        if (showDialogAddProduct) {
+            AddProductDialog(
+                onDismiss = { showDialogAddProduct = false },
+                onAdd = { newProduct -> data.add(newProduct) },
+            )
         }
     }
 }
