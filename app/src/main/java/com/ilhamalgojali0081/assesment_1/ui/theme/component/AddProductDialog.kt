@@ -51,6 +51,8 @@ fun AddProductDialog(
                         name = it
                         nameError = it.isEmpty()
                     },
+                    trailingIcon = { IconPicker(nameError) },
+                    supportingText = { ErrorHint(nameError) },
                     singleLine = true,
                     label = {
                         Text(
@@ -59,6 +61,7 @@ fun AddProductDialog(
                             fontWeight = FontWeight.SemiBold
                         )
                     },
+                    isError = nameError,
                     modifier = Modifier
                         .fillMaxWidth(),
                 )
@@ -69,6 +72,8 @@ fun AddProductDialog(
                         quanityError = it.isEmpty()
                     },
                     singleLine = true,
+                    trailingIcon = { IconPicker(quanityError) },
+                    supportingText = { ErrorHint(quanityError) },
                     label = {
                         Text(
                             text = stringResource(R.string.stock),
@@ -76,6 +81,7 @@ fun AddProductDialog(
                             fontWeight = FontWeight.SemiBold
                         )
                     },
+                    isError = quanityError,
                     modifier = Modifier
                         .fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(
