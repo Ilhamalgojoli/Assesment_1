@@ -172,7 +172,24 @@ fun AddProductDialog(
         },
         confirmButton = {
             Button(
-                onClick = {}
+                onClick = {
+                    nameError = (name == "")
+                    quanityError = (quantity == "" || quantity == "0")
+                    dateError = selectedDate == null
+                    if (nameError || quanityError || dateError){
+                        return@Button
+                    } else {
+                        val newProduct = Product(
+                            id = System.currentTimeMillis().toString(),
+                            name = name,
+                            quantity = quantity,
+                            stokInDate = selectedDate?.let { convertMillisToDate(it) } ?: "",
+                            icon = selectedCategories.image
+                        )
+                        onAdd(newProduct)
+                        onDismiss()
+                    }
+                }
             ) {
                 Text(
                     text = stringResource(R.string.confirm),
