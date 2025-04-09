@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pengelola Stock</string>
+    <string name="MainMenu">Menu Utama</string>
+    <string name="empty">Tambah Daftar Product</string>
+    <string name="stock">Jumlah :</string>
+    <string name="tanggal_masuk">Tanggal Masuk :</string>
+    <string name="edit">Ubah</string>
+    <string name="delete">Hapus</string>
+    <string name="add_product">Tambah Product</string>
+    <string name="name">Nama</string>
+    <string name="date">Tanggal</string>
+    <string name="placeholder">HH/BB/TT</string>
+    <string name="input_error">Input tidak valid</string>
+    <string name="laptop">Laptop</string>
+    <string name="phone">Hp</string>
+    <string name="confirm">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="edit_fragment">Ubah Product</string>
+    <string name="about_screen">Tentang Saya</string>
+    <string name="app_description">Pengelola Stok - Aplikasi pengelolaan stok dirancang untuk memudahkan pengguna dalam mencatat, memantau, dan mengelola stok barang atau produk yang tersedia di toko. Pengguna dapat menambahkan, mengedit,         dan menghapus data produk dengan antarmuka yang sederhana dan efisien.\\n\\nVersi 1.0.0 | © 2025 Pengelola Stok.\\n\\nDikembangkan oleh Ilham Al Gojali.</string>
+</resources>
