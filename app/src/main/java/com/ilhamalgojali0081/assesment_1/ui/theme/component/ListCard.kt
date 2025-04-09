@@ -27,7 +27,7 @@ import com.ilhamalgojali0081.assesment_1.model.Product
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 
 @Composable
-fun ListCard(product: Product) {
+fun ListCard(product: Product,onEdit: (Product) -> Unit,onDelete: (Product) -> Unit ) {
 
     Card(
         modifier = Modifier
@@ -81,7 +81,7 @@ fun ListCard(product: Product) {
                     horizontalArrangement = Arrangement.End
                 ) {
                     Button(
-                        onClick = {  },
+                        onClick = { onEdit(product) },
                         modifier = Modifier.padding(end = 4.dp),
                         contentPadding = PaddingValues(vertical = 8.dp, horizontal = 8.dp)
                     ) {
