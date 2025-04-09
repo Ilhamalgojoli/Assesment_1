@@ -11,9 +11,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -35,8 +37,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.model.Product
+import com.ilhamalgojali0081.assesment_1.navigation.Screen
 import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.AddProductDialog
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.EditProductDialog
@@ -50,8 +55,8 @@ val productListSaver: Saver<MutableList<Product>, *> = listSaver(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
-    val data = rememberSaveable(saver = productListSaver){ mutableStateListOf<Product>() }
+fun MainScreen(navController: NavHostController) {
+    val data = rememberSaveable(saver = productListSaver) { mutableStateListOf() }
 
     Scaffold(
         topBar = {
@@ -67,15 +72,26 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
+                ),
+                actions = {
+                    IconButton(
+                        onClick = { navController.navigate(Screen.About.route) }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                }
             )
         }
     ) { innerPadding ->
         MainContent(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            data = data
+            data = data,
         )
     }
 }
@@ -168,6 +184,6 @@ fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
 @Composable
 fun GreetingPreview() {
     Assesment_1Theme {
-        MainScreen()
+        MainScreen(rememberNavController())
     }
 }

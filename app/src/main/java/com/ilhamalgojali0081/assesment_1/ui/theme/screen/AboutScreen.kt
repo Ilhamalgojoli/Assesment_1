@@ -19,16 +19,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen() {
+fun AboutScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
+                navigationIcon = {
+                    IconButton(
+                        onClick = { navController.navigateUp() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                },
                 title = {
                     Text(
                         text = stringResource(R.string.about_screen),
@@ -56,7 +69,7 @@ fun AboutScreen() {
 @Composable
 fun AboutScreenPreview(){
     Assesment_1Theme {
-        AboutScreen()
+        AboutScreen(rememberNavController())
     }
 }
 
