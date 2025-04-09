@@ -6,4 +6,10 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="empty">Add List Product</string>
+    <string name="laptop">Laptop</string>
+    <string name="phone">Phone</string>
+    <string name="confirm">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_product">Add Product</string>
+    <string name="name">Name</string>
 </resources>
