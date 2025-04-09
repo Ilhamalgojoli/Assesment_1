@@ -37,6 +37,7 @@ import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.model.Product
 import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.AddProductDialog
+import com.ilhamalgojali0081.assesment_1.ui.theme.component.EditProductDialog
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.ListCard
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 
@@ -76,6 +77,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
 
     var showDialogAddProduct by remember { mutableStateOf(false) }
+    var showDialogEditProduct by remember { mutableStateOf(false) }
+    var selectedProduct by remember { mutableStateOf<Product?>(null) }
 
     Box(
         modifier = modifier
@@ -92,6 +95,11 @@ fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
                 items(data) { product ->
                     ListCard(
                         product = product,
+                        onEdit = {
+                            selectedProduct = product
+                            showDialogEditProduct = true
+                        },
+                        onDelete = {  }
                     )
                 }
             }
@@ -125,6 +133,25 @@ fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
                 onDismiss = { showDialogAddProduct = false },
                 onAdd = { newProduct -> data.add(newProduct) },
             )
+        }
+        if (selectedProduct != null && showDialogEditProduct){
+            selectedProduct?.let { product ->
+                EditProductDialog(
+                    product = product,
+                    onDissmis = {
+                        selectedProduct = null
+                        showDialogEditProduct = false
+                    },
+                    onEdit = { updateQuantity ->
+                        val index = data.indexOfFirst { it.id == selectedProduct!!.id }
+                        if (index != -1){
+                            data[index] = selectedProduct?.copy(quantity = updateQuantity) ?: product
+                        }
+                        showDialogEditProduct = false
+                        selectedProduct = null
+                    }
+                )
+            }
         }
     }
 }
