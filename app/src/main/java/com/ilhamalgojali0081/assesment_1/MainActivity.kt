@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Assesment_1Theme {
-                    MainScreen("Halo Android")
+                    MainScreen()
                 }
             }
         }
