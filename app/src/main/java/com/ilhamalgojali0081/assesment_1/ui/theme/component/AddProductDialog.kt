@@ -21,7 +21,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -39,6 +40,14 @@ import com.ilhamalgojali0081.assesment_1.model.Category
 import com.ilhamalgojali0081.assesment_1.model.Product
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 
+val CategorySaver: Saver<Category, *> = listSaver(
+    save = {
+        listOf<Any>(it.name, it.image)
+    },
+    restore = { data->
+        Category(data[0] as String,data[1] as Int)
+    }
+)
 
 @Composable
 fun AddProductDialog(
@@ -60,7 +69,7 @@ fun AddProductDialog(
         Category(stringResource(R.string.phone), R.drawable.phone)
     )
 
-    var selectedCategories by remember { mutableStateOf(categoryProduct[0]) }
+    var selectedCategories by rememberSaveable(stateSaver = CategorySaver) { mutableStateOf(categoryProduct[0]) }
 
     AlertDialog(
         onDismissRequest = onDismiss,

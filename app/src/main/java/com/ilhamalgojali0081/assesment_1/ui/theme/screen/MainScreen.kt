@@ -1,5 +1,6 @@
 package com.ilhamalgojali0081.assesment_1.ui.theme.screen
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,10 +43,15 @@ import com.ilhamalgojali0081.assesment_1.ui.theme.component.EditProductDialog
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.ListCard
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 
+val productListSaver: Saver<MutableList<Product>, *> = listSaver(
+    save = { list -> list.toList() },
+    restore = { savedList -> savedList.toMutableList() }
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    val data = remember { mutableStateListOf<Product>() }
+    val data = rememberSaveable(saver = productListSaver){ mutableStateListOf<Product>() }
 
     Scaffold(
         topBar = {
@@ -154,6 +163,7 @@ fun MainContent(modifier: Modifier = Modifier, data: MutableList<Product>) {
     }
 }
 
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
