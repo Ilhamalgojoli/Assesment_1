@@ -1,5 +1,6 @@
 package com.ilhamalgojali0081.assesment_1.ui.theme.component
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.BorderStroke
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -40,90 +40,95 @@ fun ListCard(product: Product,onEdit: (Product) -> Unit,onDelete: (Product) -> U
             .fillMaxWidth()
             .padding(12.dp),
         border = BorderStroke(1.dp, Color.Black),
-        colors = CardDefaults.cardColors( containerColor = Color.White )
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .padding(8.dp)
-                .fillMaxSize()
+                .fillMaxWidth()
         ) {
-            Image(
-                painter = painterResource(id = product.icon),
-                contentDescription = product.name,
-                modifier = Modifier
-                    .padding(start = 16.dp)
-                    .size(100.dp)
-            )
-            Column(
-                modifier = Modifier
-                    .padding(vertical = 8.dp, horizontal = 12.dp)
-                    .weight(1f)
+            Row(
+                modifier = Modifier.fillMaxWidth()
             ) {
-                Text(
-                    text = product.name,
-                    fontFamily = poppins,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
-                    color = Color.Black
-                )
-                Text(
-                    text = stringResource(R.string.stock) + product.quantity,
-                    fontFamily = poppins,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 14.sp,
-                    color = Color.Black
-                )
-                Text(
-                    text = stringResource(R.string.tanggal_masuk) + product.stokInDate,
-                    fontFamily = poppins,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 14.sp,
-                    color = Color.Black
-                )
-                Row(
+                Image(
+                    painter = painterResource(id = product.icon),
+                    contentDescription = product.name,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp, horizontal = 12.dp),
-                    horizontalArrangement = Arrangement.End
+                        .padding(start = 16.dp)
+                        .size(100.dp)
+                )
+                Column(
+                    modifier = Modifier
+                        .padding(vertical = 8.dp, horizontal = 15.dp)
+                        .weight(1f)
                 ) {
-                    Button(
-                        onClick = { onEdit(product) },
-                        modifier = Modifier.padding(end = 4.dp),
-                        contentPadding = PaddingValues(vertical = 8.dp, horizontal = 8.dp)
-                    ) {
-                        Text(text = stringResource(R.string.edit))
-                    }
-                    Button(
-                        onClick = { onDelete(product) },
-                        modifier = Modifier.padding(start = 4.dp),
-                        contentPadding = PaddingValues(vertical = 10.dp, horizontal = 10.dp)
-                    ) {
-                        Text(text = stringResource(R.string.delete))
-                    }
-                    Button(
-                        onClick = { shareData(
+                    Text(
+                        text = product.name,
+                        fontFamily = poppins,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = stringResource(R.string.quantity_in_list) + product.quantity,
+                        fontFamily = poppins,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = stringResource(R.string.tanggal_masuk) + product.stokInDate,
+                        fontFamily = poppins,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
+                        color = Color.Black
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Button(
+                    onClick = {
+                        shareData(
                             context = context,
-                            message = context.getString(R.string.share_product) +
-                                    "\nName: ${product.name}" +
-                                    "\nStock: ${product.quantity}" +
-                                    "\nDate: ${product.stokInDate}"
+                            message = context.getString(
+                                R.string.share_product,
+                                product.name,
+                                product.quantity,
+                                product.stokInDate,
                             )
-                        },
-                        modifier = Modifier.padding(start = 4.dp),
-                        contentPadding = PaddingValues(vertical = 10.dp, horizontal = 10.dp)
-                    ) {
-                        Text( text = stringResource(R.string.share) )
-                    }
+                        )
+                    },
+                    contentPadding = PaddingValues(vertical = 8.dp, horizontal = 12.dp)
+                ) {
+                    Text(text = stringResource(R.string.share))
+                }
+                Button(
+                    onClick = { onEdit(product) },
+                    contentPadding = PaddingValues(vertical = 8.dp, horizontal = 12.dp)
+                ) {
+                    Text(text = stringResource(R.string.edit))
+                }
+                Button(
+                    onClick = { onDelete(product) },
+                    contentPadding = PaddingValues(vertical = 8.dp, horizontal = 12.dp)
+                ) {
+                    Text(text = stringResource(R.string.delete))
                 }
             }
         }
     }
+
 }
 
-private fun shareData(context: Context,message: String){
+private fun shareData(context: Context, message: String){
     val sharedIntent = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
-        putExtra(Intent.EXTRA_INTENT, message)
+        putExtra(Intent.EXTRA_TEXT, message)
     }
     if(sharedIntent.resolveActivity(context.packageManager) != null){
         context.startActivity(sharedIntent)

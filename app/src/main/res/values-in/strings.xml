@@ -3,10 +3,11 @@
     <string name="app_name">Pengelola Stock</string>
     <string name="MainMenu">Menu Utama</string>
     <string name="empty">Tambah Daftar Product</string>
-    <string name="stock">Jumlah :</string>
+    <string name="stock">Jumlah</string>
     <string name="tanggal_masuk">Tanggal Masuk :</string>
     <string name="edit">Ubah</string>
     <string name="delete">Hapus</string>
+    <string name="quantity_in_list">Jumlah :</string>
     <string name="add_product">Tambah Product</string>
     <string name="name">Nama</string>
     <string name="date">Tanggal</string>
@@ -18,7 +19,11 @@
     <string name="cancel">Batal</string>
     <string name="edit_fragment">Ubah Product</string>
     <string name="about_screen">Tentang Saya</string>
-    <string name="app_description">Pengelola Stok - Aplikasi pengelolaan stok dirancang untuk memudahkan pengguna dalam mencatat, memantau, dan mengelola stok barang atau produk yang tersedia di toko. Pengguna dapat menambahkan, mengedit,         dan menghapus data produk dengan antarmuka yang sederhana dan efisien.\\n\\nVersi 1.0.0 | © 2025 Pengelola Stok.\\n\\nDikembangkan oleh Ilham Al Gojali.</string>
+
+    <string name="app_description">
+        Pengelola Stok - Aplikasi pengelolaan stok dirancang untuk memudahkan pengguna dalam mencatat, memantau, dan mengelola stok barang atau produk yang tersedia di toko. Pengguna dapat menambahkan, mengedit, dan menghapus data produk dengan antarmuka yang sederhana dan efisien.\n\nVersi 1.0.0 | © 2025 Pengelola Stok.\n\nDikembangkan oleh Ilham Al Gojali.
+    </string>
+
     <string name="share">Bagikan</string>
-    <string name="share_product">Bagikan</string>
+    <string name="share_product">Nama product : %1$s\n Memiliki stock : %2$s\n Tanggal masuk : %3$s</string>
 </resources>
