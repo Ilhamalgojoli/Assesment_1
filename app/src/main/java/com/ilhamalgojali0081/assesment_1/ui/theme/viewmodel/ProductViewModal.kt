@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
-class MainViewModel(
+class ProductViewModal(
     productDao: ProductDao
 ):ViewModel() {
 

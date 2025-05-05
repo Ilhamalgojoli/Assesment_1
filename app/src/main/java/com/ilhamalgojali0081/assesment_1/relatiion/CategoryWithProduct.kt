@@ -8,8 +8,8 @@ import com.ilhamalgojali0081.assesment_1.model.Product
 data class CategoryWithProduct(
     @Embedded val product: Product,
     @Relation(
-        parentColumn = "Category",
-        entityColumn = "Product"
+        parentColumn = "categoryId",
+        entityColumn = "id"
     )
     val category: Category
 )
