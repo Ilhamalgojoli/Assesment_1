@@ -1,14 +1,25 @@
 package com.ilhamalgojali0081.assesment_1.model
 
-import android.os.Parcelable
 import androidx.annotation.DrawableRes
-import kotlinx.parcelize.Parcelize
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
-@Parcelize
+@Entity(
+    foreignKeys = [
+        ForeignKey(
+            entity = Category::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("Product"),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class Product(
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
+    val categoryId: Long,
     val name: String,
     val quantity: String,
     val stokInDate: String,
-    @DrawableRes val icon: Int
-):Parcelable
+)

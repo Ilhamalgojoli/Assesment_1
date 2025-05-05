@@ -5,7 +5,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ilhamalgojali0081.assesment_1.ui.theme.screen.AboutScreen
 import com.ilhamalgojali0081.assesment_1.ui.theme.screen.MainScreen
 
 @Composable
@@ -16,9 +15,6 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()){
     ){
         composable(route = Screen.Home.route) {
             MainScreen(navController)
-        }
-        composable(route = Screen.About.route) {
-            AboutScreen(navController)
         }
     }
 }

@@ -27,7 +27,7 @@ import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen(navController: NavHostController) {
+fun SecondScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -57,11 +57,13 @@ fun AboutScreen(navController: NavHostController) {
             )
         }
     ) { innerPadding ->
-        Text(
-            text = stringResource(R.string.app_description),
-            modifier = Modifier.padding(innerPadding).padding(16.dp)
-        )
+        FormBaru(modifier = Modifier.padding(innerPadding))
     }
+}
+
+@Composable
+fun FormBaru(modifier: Modifier = Modifier){
+
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
@@ -69,7 +71,7 @@ fun AboutScreen(navController: NavHostController) {
 @Composable
 fun AboutScreenPreview(){
     Assesment_1Theme {
-        AboutScreen(rememberNavController())
+        SecondScreen(rememberNavController())
     }
 }
 
