@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.ilhamalgojali0081.assesment_1.navigation.SetupNavGraph
 import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
-import com.ilhamalgojali0081.assesment_1.ui.theme.screen.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

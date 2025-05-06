@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.ilhamalgojali0081.assesment_1.model.Category
 import com.ilhamalgojali0081.assesment_1.model.Product
 
-@Database(entities = [Category::class, Product::class], version = 1)
+@Database(entities = [Category::class, Product::class], version = 2)
 abstract class ListProductDb: RoomDatabase() {
     abstract val category: CategoryDao
     abstract val product: ProductDao
@@ -25,7 +25,8 @@ abstract class ListProductDb: RoomDatabase() {
                         context.applicationContext,
                         ListProductDb::class.java,
                         "list_product.db"
-                    ).build()
+                    ).fallbackToDestructiveMigration()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

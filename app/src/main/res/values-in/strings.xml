@@ -2,11 +2,19 @@
 <resources>
     <string name="app_name">Pengelola Stock</string>
     <string name="MainMenu">Menu Utama</string>
-    <string name="empty">Tambah Daftar Product</string>
+    <string name="empty">List Kosong</string>
     <string name="stock">Jumlah</string>
     <string name="tanggal_masuk">Tanggal Masuk :</string>
     <string name="edit">Ubah</string>
     <string name="delete">Hapus</string>
+    <string name="transaction">Transaksi</string>
+    <string name="grid">Grid</string>
+    <string name="list">List</string>
+    <string name="back">Kembali</string>
+    <string name="form_baru">Form baru</string>
+    <string name="form_ubah">Form ubah</string>
+    <string name="invalid">Input tidak valid</string>
+    <string name="delete_product">Anda yakin ingin menghapus product ini ?</string>
     <string name="quantity_in_list">Jumlah :</string>
     <string name="price">Harga</string>
     <string name="add_product">Tambah Product</string>

@@ -139,10 +139,9 @@ fun MainContent(modifier: Modifier = Modifier, showList: Boolean, navController:
     val showDeleteDialog = remember { mutableStateOf(false) }
     val selectedItem = remember { mutableStateOf<CategoryWithProduct?>(null) }
 
-    // Update state: menutup DetailProduct ketika DeleteDialog akan muncul
     LaunchedEffect(showDeleteDialog.value) {
         if (showDeleteDialog.value) {
-            openDialog.value = false // Tutup DetailProduct
+            openDialog.value = false
         }
     }
 
@@ -201,7 +200,7 @@ fun MainContent(modifier: Modifier = Modifier, showList: Boolean, navController:
                 },
                 onDelete = {
                     if (selectedItem.value != null) {
-                        showDeleteDialog.value = true // Tampilkan DeleteDialog
+                        showDeleteDialog.value = true
                     }
                 }
             )
@@ -209,7 +208,9 @@ fun MainContent(modifier: Modifier = Modifier, showList: Boolean, navController:
 
         if (showDeleteDialog.value) {
             DeleteDialog(
-                onDismissRequest = { showDeleteDialog.value = false },
+                onDismissRequest = {
+                    showDeleteDialog.value = false
+                },
                 onConfirmation = {
                     val id = selectedItem.value!!.product.id
                     viewModal.deleteProduct(id)

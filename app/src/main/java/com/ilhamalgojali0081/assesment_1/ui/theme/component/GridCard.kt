@@ -29,6 +29,7 @@ fun GridCard(categoryWithProduct: CategoryWithProduct, onClick: () -> Unit){
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(8.dp)
             .clickable{ onClick() },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -37,7 +38,7 @@ fun GridCard(categoryWithProduct: CategoryWithProduct, onClick: () -> Unit){
     ) {
         Column(
             modifier = Modifier
-                .padding(8.dp),
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
@@ -72,7 +73,7 @@ fun GridPreview(){
     Assesment_1Theme {
         val dummyCategory = CategoryWithProduct(
             category = Category(id = 1, name = "Electronics"),
-            product = Product(id = 1, name = "Smartphone",4," " , 5.0,categoryId = 1)
+            product = Product(id = 1, name = "Smartphone","4","5.0"," " , categoryId = 1)
         )
         GridCard (
             categoryWithProduct = dummyCategory,

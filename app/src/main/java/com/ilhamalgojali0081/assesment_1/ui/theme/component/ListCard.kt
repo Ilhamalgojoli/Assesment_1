@@ -64,7 +64,7 @@ fun ListCard(categoryWithProduct: CategoryWithProduct,onClick: () -> Unit) {
 fun ListCardPreview(){
     val dummyCategory = CategoryWithProduct(
         category = Category(id = 1, name = "Electronics"),
-        product = Product(id = 1, name = "Smartphone",4," " , 5.0,categoryId = 1)
+        product = Product(id = 1, name = "Smartphone","4" , "5.0"," " ,categoryId = 1)
     )
     ListCard(
         categoryWithProduct = dummyCategory,

@@ -5,7 +5,16 @@
     <string name="tanggal_masuk">Stock in Date : </string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="empty">Add List Product</string>
+    <string name="empty">List empty</string>
+    <string name="delete_product">You sure want to delete this product ?</string>
+
+    <string name="transaction">Transaction</string>
+    <string name="grid">Grid</string>
+    <string name="list">List</string>
+    <string name="back">Back</string>
+    <string name="invalid">Invalid Input</string>
+    <string name="form_baru">New Form</string>
+    <string name="form_ubah">Edit Form</string>
     <string name="laptop">Laptop</string>
     <string name="phone">Phone</string>
     <string name="confirm">Save</string>
