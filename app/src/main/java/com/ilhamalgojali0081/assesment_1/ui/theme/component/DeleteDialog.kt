@@ -11,7 +11,7 @@ import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
 
 @Composable
-fun DisplayAlertDialog(
+fun DeleteDialog(
     onDismissRequest : () -> Unit,
     onConfirmation : () -> Unit
 ) {
@@ -23,7 +23,7 @@ fun DisplayAlertDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = { onConfirmation() }) {
+            TextButton(onClick = { onDismissRequest() }) {
                 Text( text = stringResource(R.string.cancel) )
             }
         },
@@ -36,7 +36,7 @@ fun DisplayAlertDialog(
 @Composable
 fun DialogAlertPreview(){
     Assesment_1Theme  {
-        DisplayAlertDialog(
+        DeleteDialog(
             onDismissRequest = {  },
             onConfirmation = { }
         )
