@@ -44,14 +44,16 @@ fun ListCard(categoryWithProduct: CategoryWithProduct,onClick: () -> Unit) {
                 maxLines = 1
             )
             Text(
-                text = stringResource(R.string.category_name) + categoryWithProduct.category.name,
+                text = stringResource(R.string.category_name)
+                        + " " + categoryWithProduct.category.name,
                 overflow = TextOverflow.Ellipsis,
                 fontWeight = FontWeight.Normal,
                 fontFamily = poppins,
                 maxLines = 1
             )
             Text(
-                text = stringResource(R.string.stock) + categoryWithProduct.product.quantity,
+                text = stringResource(R.string.stock)
+                        + " " + categoryWithProduct.product.quantity,
                 overflow = TextOverflow.Ellipsis,
                 fontWeight = FontWeight.Normal,
                 fontFamily = poppins,

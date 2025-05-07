@@ -20,8 +20,8 @@
     <string name="product_name">Product name</string>
     <string name="stock_amount">Stock amount</string>
 
-    <string name="name">Name:</string>
-    <string name="category_name">Category:</string>
+    <string name="name">Name: </string>
+    <string name="category_name">Category: </string>
     <string name="stock">Stock:</string>
     <string name="date">Date:</string>
     <string name="price">Price:Rp.</string>

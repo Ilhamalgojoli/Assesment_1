@@ -58,31 +58,31 @@ fun DetailProduct(
             ) {
                 Text(
                     text = stringResource(R.string.name)
-                            + categoryWithProduct.product.name,
+                            + " " + categoryWithProduct.product.name,
                     fontFamily = poppins,
                     fontSize = 16.sp
                 )
                 Text(
                     text = stringResource(R.string.category_name)
-                            + categoryWithProduct.category.name,
+                            + " " + categoryWithProduct.category.name,
                     fontFamily = poppins,
                     fontSize = 16.sp
                 )
                 Text(
                     text = stringResource(R.string.stock)
-                            + categoryWithProduct.product.quantity,
+                            + " " + categoryWithProduct.product.quantity + " /Kg/Unit",
                     fontFamily = poppins,
                     fontSize = 16.sp
                 )
                 Text(
                     text = stringResource(R.string.date)
-                            + categoryWithProduct.product.stokInDate,
+                            + " " + categoryWithProduct.product.stokInDate,
                     fontFamily = poppins,
                     fontSize = 16.sp
                 )
                 Text(
                     text = stringResource(R.string.price)
-                            + categoryWithProduct.product.price,
+                            + " " + categoryWithProduct.product.price + " /Kg/Unit",
                     fontFamily = poppins,
                     fontSize = 16.sp
                 )

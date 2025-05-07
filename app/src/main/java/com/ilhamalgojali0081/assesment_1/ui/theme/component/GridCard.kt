@@ -52,7 +52,7 @@ fun GridCard(categoryWithProduct: CategoryWithProduct, onClick: () -> Unit){
             )
             Text(
                 text = stringResource(R.string.category_name)
-                        + categoryWithProduct.category.name,
+                        + " " + categoryWithProduct.category.name,
                 overflow = TextOverflow.Ellipsis,
                 fontWeight = FontWeight.Normal,
                 fontFamily = poppins,
@@ -60,7 +60,7 @@ fun GridCard(categoryWithProduct: CategoryWithProduct, onClick: () -> Unit){
             )
             Text(
                 text = stringResource(R.string.stock)
-                        + categoryWithProduct.product.quantity,
+                        + " " + categoryWithProduct.product.quantity,
                 overflow = TextOverflow.Ellipsis,
                 fontWeight = FontWeight.Normal,
                 fontFamily = poppins,
