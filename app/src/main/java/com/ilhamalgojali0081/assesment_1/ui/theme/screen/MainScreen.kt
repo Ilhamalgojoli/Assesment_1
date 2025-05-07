@@ -115,7 +115,10 @@ fun MainScreen(navController: NavHostController) {
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                Icon(Icons.Default.Add, contentDescription = "add")
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = stringResource(R.string.add_product)
+                )
             }
         }
     ) { innerPadding ->
@@ -128,12 +131,16 @@ fun MainScreen(navController: NavHostController) {
 }
 
 @Composable
-fun MainContent(modifier: Modifier = Modifier, showList: Boolean, navController: NavHostController) {
+fun MainContent(
+    modifier: Modifier = Modifier,
+    showList: Boolean,
+    navController: NavHostController
+) {
     val context = LocalContext.current
     val factory = ViewModelFactory(context)
 
-    val viewModal: ProductRepository = viewModel(factory = factory)
-    val data by viewModal.data.collectAsState()
+    val viewModel: ProductRepository = viewModel(factory = factory)
+    val data by viewModel.data.collectAsState(initial = emptyList())
 
     val openDialog = remember { mutableStateOf(false) }
     val showDeleteDialog = remember { mutableStateOf(false) }
@@ -147,7 +154,10 @@ fun MainContent(modifier: Modifier = Modifier, showList: Boolean, navController:
 
     if (data.isEmpty()) {
         Column(
-            modifier = modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
+            modifier = modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -213,7 +223,7 @@ fun MainContent(modifier: Modifier = Modifier, showList: Boolean, navController:
                 },
                 onConfirmation = {
                     val id = selectedItem.value!!.product.id
-                    viewModal.deleteProduct(id)
+                    viewModel.deleteProduct(id)
                     showDeleteDialog.value = false
                 }
             )

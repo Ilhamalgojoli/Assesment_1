@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Stock Manager</string>
     <string name="MainMenu">Main Menu</string>
-    <string name="stock">"Quantity "</string>
-    <string name="tanggal_masuk">Stock in Date : </string>
+    <string name="category">Category</string>
+    <string name="tanggal_masuk">Stock in Date:</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="empty">List empty</string>
-    <string name="delete_product">You sure want to delete this product ?</string>
-
+    <string name="delete_product">You sure want to delete this product?</string>
+    <string name="chose_category">Choose category</string>
+    <string name="sanity_check_input">Data cannot be empty</string>
     <string name="transaction">Transaction</string>
     <string name="grid">Grid</string>
     <string name="list">List</string>
@@ -15,18 +16,25 @@
     <string name="invalid">Invalid Input</string>
     <string name="form_baru">New Form</string>
     <string name="form_ubah">Edit Form</string>
-    <string name="laptop">Laptop</string>
-    <string name="phone">Phone</string>
+    
+    <string name="product_name">Product name</string>
+    <string name="stock_amount">Stock amount</string>
+
+    <string name="name">Name:</string>
+    <string name="category_name">Category:</string>
+    <string name="stock">Stock:</string>
+    <string name="date">Date:</string>
+    <string name="price">Price:Rp.</string>
+
+    <string name="price_input">Price</string>
+    
     <string name="confirm">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="quantity_in_list">Quantity :</string>
-    <string name="price">Price</string>
     <string name="add_product">Add Product</string>
-    <string name="name">Name</string>
+    <string name="edit_product">Edit Product</string>
+
     <string name="input_error">Input not valid</string>
-    <string name="date">Date</string>
     <string name="placeholder">DD/MM/YY</string>
-    <string name="edit_fragment">Edit Product</string>
     <string name="about_screen">About App</string>
     <string name="app_description">
         Stock Manager - This stock management application is designed to help users record, monitor, and manage inventory or products available in the store.

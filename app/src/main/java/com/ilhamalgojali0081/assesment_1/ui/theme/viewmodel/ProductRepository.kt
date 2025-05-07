@@ -27,7 +27,7 @@ class ProductRepository(
     private val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     private val _categoryList = MutableStateFlow<List<Category>>(emptyList())
-    val categoryList: Flow<List<Category>> get() = _categoryList
+    val categoryList: StateFlow<List<Category>> get() = _categoryList
 
     init {
         viewModelScope.launch {
@@ -40,12 +40,11 @@ class ProductRepository(
                 categoryDao.insertCategory(Category(name = "Buah buahan"))
                 categoryDao.insertCategory(Category(name = "Rempah & Bumbu"))
             }
-
             _categoryList.value = categoryDao.getAllCategory().first()
         }
     }
 
-    val data: StateFlow<List<CategoryWithProduct>> = productDao.getAllProductWithCategory().stateIn(
+    val data: Flow<List<CategoryWithProduct>> = productDao.getAllProductWithCategory().stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(),
         initialValue = emptyList()

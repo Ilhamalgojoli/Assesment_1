@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.model.Category
 import com.ilhamalgojali0081.assesment_1.model.Product
@@ -55,17 +56,43 @@ fun DetailProduct(
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text("Nama Produk : ${categoryWithProduct.product.name}")
-                Text("Kategori : ${categoryWithProduct.category.name}")
-                Text("Stok : ${categoryWithProduct.product.quantity} Kg/Unit")
-                Text("Tanggal Masuk : ${categoryWithProduct.product.stokInDate}")
-                Text("Harga : Rp ${categoryWithProduct.product.price}")
+                Text(
+                    text = stringResource(R.string.name)
+                            + categoryWithProduct.product.name,
+                    fontFamily = poppins,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = stringResource(R.string.category_name)
+                            + categoryWithProduct.category.name,
+                    fontFamily = poppins,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = stringResource(R.string.stock)
+                            + categoryWithProduct.product.quantity,
+                    fontFamily = poppins,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = stringResource(R.string.date)
+                            + categoryWithProduct.product.stokInDate,
+                    fontFamily = poppins,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = stringResource(R.string.price)
+                            + categoryWithProduct.product.price,
+                    fontFamily = poppins,
+                    fontSize = 16.sp
+                )
 
                 Row(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp,
+                        Alignment.CenterHorizontally)
                 ) {
                     Button(
                         onClick = {
@@ -111,7 +138,8 @@ fun DetailProduct(
 fun DetailProductPrevieww(){
     val dummyCategory = CategoryWithProduct(
         category = Category(id = 1, name = "Electronics"),
-        product = Product(id = 1, name = "Smartphone","4" , "5.0"," " ,categoryId = 1)
+        product = Product(id = 1, name = "Smartphone","4"
+            , "5.0"," " ,categoryId = 1)
     )
 
     DetailProduct(

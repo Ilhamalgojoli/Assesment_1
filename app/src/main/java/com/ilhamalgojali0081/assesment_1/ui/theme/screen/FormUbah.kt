@@ -9,10 +9,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -28,14 +29,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.ilhamalgojali0081.assesment_1.R
 import com.ilhamalgojali0081.assesment_1.model.Category
 import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
+import com.ilhamalgojali0081.assesment_1.ui.theme.component.ErrorHint
+import com.ilhamalgojali0081.assesment_1.ui.theme.component.IconPicker
+import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
 import com.ilhamalgojali0081.assesment_1.ui.theme.viewmodel.ProductRepository
 import com.ilhamalgojali0081.assesment_1.util.ViewModelFactory
 
@@ -50,53 +58,81 @@ fun FormUbah(
     val context = LocalContext.current
     val factory = ViewModelFactory(context)
     val viewModel: ProductRepository = viewModel(factory = factory)
+    val categories by viewModel.categoryList.collectAsState(initial = emptyList())
 
     var name by remember { mutableStateOf("") }
     var stockInput by remember { mutableStateOf("") }
     var priceInput by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf<Category?>(null) }
 
-    val categories by viewModel.categoryList.collectAsState(initial = emptyList())
-
-    // Load data jika id ada (mode edit)
-    LaunchedEffect(id, categories) {
-        if (id != null && categories.isNotEmpty()) {
-            val product = viewModel.getProductById(id)
-            product?.let {
-                name = it.name
-                stockInput = it.quantity
-                priceInput = it.price
-                selectedCategory = categories.find { cat -> cat.id == it.categoryId }
-            }
+    LaunchedEffect(Unit) {
+        if (id == null) return@LaunchedEffect
+        val data = viewModel.getProductById(id) ?: return@LaunchedEffect
+        name = data.name
+        stockInput = data.quantity
+        priceInput = data.price
+        selectedCategory = categories.find {
+            it.id == data.categoryId
         }
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(text = if (id == null) "Tambah Produk" else "Edit Produk")
-                },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        )
                     }
+                },
+                title = {
+                    if(id == null)
+                        Text(
+                            text = stringResource(R.string.add_product),
+                            fontFamily = poppins,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    else
+                        Text(
+                            stringResource(R.string.edit_product),
+                            fontFamily = poppins,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
                 },
                 actions = {
                     IconButton(onClick = {
-                        if (name.isBlank() || stockInput.isBlank() || priceInput.isBlank() || selectedCategory == null) {
-                            Toast.makeText(context, "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                        if (name == "" || stockInput == "" || priceInput == ""
+                            || selectedCategory == null) {
+                            Toast.makeText(context, R.string.sanity_check_input,
+                                Toast.LENGTH_SHORT).show()
                             return@IconButton
                         }
 
                         if (id == null) {
-                            viewModel.insertProduct(name, stockInput, priceInput, selectedCategory!!)
+                            viewModel.insertProduct(
+                                name,
+                                stockInput,
+                                priceInput,
+                                selectedCategory!!
+                            )
                         } else {
-                            viewModel.updateProduct(id, name, stockInput, priceInput, selectedCategory!!)
+                            viewModel.updateProduct(
+                                id,
+                                name,
+                                stockInput,
+                                priceInput,
+                                selectedCategory!!
+                            )
                         }
                         navController.navigateUp()
                     }) {
-                        Icon(Icons.Default.Check, contentDescription = "Simpan")
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = stringResource(R.string.confirm))
                     }
                 }
             )
@@ -132,32 +168,73 @@ fun FormContent(
     onSelectedCategory: (Category) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
+    var nameError by remember { mutableStateOf(false) }
+    var priceError by remember { mutableStateOf(false) }
+    var stockError by remember { mutableStateOf(false) }
 
-    Column(modifier = modifier.padding(16.dp)) {
+    Column(
+        modifier = modifier.padding(16.dp)
+    ) {
         OutlinedTextField(
             value = name,
-            onValueChange = onChangeName,
-            label = { Text("Nama Produk") },
+            onValueChange = { onChangeName(it) },
+            label = {
+                Text(
+                    text = stringResource(R.string.product_name),
+                    fontFamily = poppins
+                )
+            },
+            trailingIcon = {
+                IconPicker(nameError)
+            },
+            supportingText = {
+                ErrorHint(nameError)
+            },
             modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            singleLine = true,
+            isError = nameError
         )
 
         OutlinedTextField(
             value = stockInput,
-            onValueChange = onChangeStockInput,
-            label = { Text("Jumlah Stok") },
+            onValueChange = { onChangeStockInput(it) },
+            label = {
+                Text(
+                    text = stringResource(R.string.stock_amount),
+                    fontFamily = poppins
+                )
+            },
+            trailingIcon = {
+                IconPicker(stockError)
+            },
+            supportingText = {
+                ErrorHint(stockError)
+            },
             modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            isError = stockError
         )
 
         OutlinedTextField(
             value = priceInput,
-            onValueChange = onChangePriceInput,
-            label = { Text("Harga") },
+            onValueChange = { onChangePriceInput(it) },
+            label = {
+                Text(
+                    text = stringResource(R.string.price_input),
+                    fontFamily = poppins
+                )
+            },
+            trailingIcon = {
+                IconPicker(priceError)
+            },
+            supportingText = {
+                ErrorHint(priceError)
+            },
             modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            isError = priceError
         )
 
         if (categories.isNotEmpty()) {
@@ -170,13 +247,25 @@ fun FormContent(
             ) {
                 OutlinedTextField(
                     readOnly = true,
-                    value = selectedCategory?.name ?: "Pilih Kategori",
+                    value = selectedCategory?.name ?: stringResource(R.string.chose_category),
                     onValueChange = {},
-                    label = { Text("Kategori") },
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded) },
-                    modifier = Modifier
-                        .menuAnchor()
-                        .fillMaxWidth()
+                    label = {
+                        Text(
+                            text = stringResource(R.string.category),
+                            fontFamily = poppins
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector =
+                            if (expanded)
+                                Icons.Default.KeyboardArrowUp
+                            else
+                                Icons.Default.KeyboardArrowDown,
+                            contentDescription = stringResource(R.string.chose_category)
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth().menuAnchor()
                 )
 
                 ExposedDropdownMenu(
@@ -185,7 +274,12 @@ fun FormContent(
                 ) {
                     categories.forEach { category ->
                         DropdownMenuItem(
-                            text = { Text(category.name) },
+                            text = {
+                                Text(
+                                    category.name,
+                                    fontFamily = poppins
+                                )
+                            },
                             onClick = {
                                 onSelectedCategory(category)
                                 expanded = false
@@ -194,8 +288,6 @@ fun FormContent(
                     }
                 }
             }
-        } else {
-            Text("Memuat kategori...", modifier = Modifier.padding(top = 16.dp))
         }
     }
 }

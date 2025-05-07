@@ -11,7 +11,10 @@ import com.ilhamalgojali0081.assesment_1.R
 @Composable
 fun IconPicker(isError: Boolean) {
     if (isError) {
-        Icon(imageVector = Icons.Filled.Warning, contentDescription = null)
+        Icon(
+            imageVector = Icons.Filled.Warning,
+            contentDescription = stringResource(R.string.input_error)
+        )
     }
 }
 

@@ -3,30 +3,41 @@
     <string name="app_name">Pengelola Stock</string>
     <string name="MainMenu">Menu Utama</string>
     <string name="empty">List Kosong</string>
-    <string name="stock">Jumlah</string>
+    <string name="category">Kategori</string>
     <string name="tanggal_masuk">Tanggal Masuk :</string>
     <string name="edit">Ubah</string>
     <string name="delete">Hapus</string>
+    <string name="chose_category">Pilih category</string>
+    <string name="sanity_check_input">Data tidak boleh kosong</string>
     <string name="transaction">Transaksi</string>
+
+    <string name="product_name">Nama product</string>
+    <string name="stock_amount">Jumlah stock</string>
+
+    <string name="name">Nama:</string>
+    <string name="category_name">Kategori:</string>
+    <string name="stock">Tersedia:</string>
+    <string name="date">Tanggal:</string>
+    <string name="price">Harga:</string>
+
+    <string name="price_input">Harga</string>
+
     <string name="grid">Grid</string>
     <string name="list">List</string>
     <string name="back">Kembali</string>
     <string name="form_baru">Form baru</string>
     <string name="form_ubah">Form ubah</string>
     <string name="invalid">Input tidak valid</string>
-    <string name="delete_product">Anda yakin ingin menghapus product ini ?</string>
-    <string name="quantity_in_list">Jumlah :</string>
-    <string name="price">Harga</string>
+    <string name="delete_product">Anda yakin ingin menghapus product ini?</string>
+
+    <string name="edit_product">Ubah Product</string>
+
     <string name="add_product">Tambah Product</string>
-    <string name="name">Nama</string>
-    <string name="date">Tanggal</string>
+
     <string name="placeholder">HH/BB/TT</string>
     <string name="input_error">Input tidak valid</string>
-    <string name="laptop">Laptop</string>
-    <string name="phone">Hp</string>
     <string name="confirm">Simpan</string>
     <string name="cancel">Batal</string>
-    <string name="edit_fragment">Ubah Product</string>
     <string name="about_screen">Tentang Saya</string>
 
     <string name="app_description">
