@@ -1,6 +1,5 @@
 package com.ilhamalgojali0081.assesment_1.model
 
-import androidx.annotation.DrawableRes
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey

@@ -70,7 +70,7 @@ fun MainScreen(navController: NavHostController) {
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.MainMenu),
+                        text = stringResource(R.string.app_name),
                         fontFamily = poppins,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold
