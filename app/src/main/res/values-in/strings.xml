@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pengelola Stock</string>
-    <string name="MainMenu">Menu Utama</string>
+    <string name="app_name">Kelola Stock</string>
     <string name="empty">List Kosong</string>
     <string name="category">Kategori</string>
     <string name="tanggal_masuk">Tanggal Masuk :</string>

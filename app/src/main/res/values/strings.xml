@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Stock Manager</string>
-    <string name="MainMenu">Main Menu</string>
     <string name="category">Category</string>
     <string name="tanggal_masuk">Stock in Date:</string>
     <string name="edit">Edit</string>

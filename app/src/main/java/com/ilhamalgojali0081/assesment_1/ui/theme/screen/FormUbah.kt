@@ -205,6 +205,11 @@ fun FormContent(
                 )
             },
             trailingIcon = {
+                Text(
+                    text = "Kg/Unit",
+                    fontFamily = poppins,
+                    modifier = Modifier.padding(end = 8.dp)
+                )
                 IconPicker(stockError)
             },
             supportingText = {
@@ -223,6 +228,13 @@ fun FormContent(
                 Text(
                     text = stringResource(R.string.price_input),
                     fontFamily = poppins
+                )
+            },
+            leadingIcon = {
+                Text(
+                    text = "Rp.",
+                    fontFamily = poppins,
+                    modifier = Modifier.padding(start = 8.dp)
                 )
             },
             trailingIcon = {
