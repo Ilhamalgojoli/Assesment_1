@@ -44,7 +44,7 @@ fun GridCard(categoryWithProduct: CategoryWithProduct, onClick: () -> Unit){
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp),
+                .padding(start = 24.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

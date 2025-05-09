@@ -23,7 +23,7 @@
     <string name="category_name">Category: </string>
     <string name="stock">Stock:</string>
     <string name="date">Date:</string>
-    <string name="price">Price:Rp.</string>
+    <string name="price">Price: Rp.</string>
 
     <string name="price_input">Price</string>
     

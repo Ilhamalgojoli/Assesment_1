@@ -17,7 +17,7 @@
     <string name="category_name">Kategori:</string>
     <string name="stock">Tersedia:</string>
     <string name="date">Tanggal:</string>
-    <string name="price">Harga:</string>
+    <string name="price">Harga: Rp.</string>
 
     <string name="price_input">Harga</string>
 
