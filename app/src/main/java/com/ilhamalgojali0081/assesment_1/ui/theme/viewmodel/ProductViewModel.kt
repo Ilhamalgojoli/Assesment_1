@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ProductRepository(
+class ProductViewModel(
     private val productDao: ProductDao,
     private val categoryDao: CategoryDao
 ):ViewModel() {

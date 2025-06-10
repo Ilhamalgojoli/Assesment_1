@@ -52,7 +52,7 @@ import com.ilhamalgojali0081.assesment_1.ui.theme.component.DetailProduct
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.GridCard
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.ListCard
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
-import com.ilhamalgojali0081.assesment_1.ui.theme.viewmodel.ProductRepository
+import com.ilhamalgojali0081.assesment_1.ui.theme.viewmodel.ProductViewModel
 import com.ilhamalgojali0081.assesment_1.util.SettingsDataStore
 import com.ilhamalgojali0081.assesment_1.util.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -139,7 +139,7 @@ fun MainContent(
     val context = LocalContext.current
     val factory = ViewModelFactory(context)
 
-    val viewModel: ProductRepository = viewModel(factory = factory)
+    val viewModel: ProductViewModel = viewModel(factory = factory)
     val data by viewModel.data.collectAsState(initial = emptyList())
 
     val openDialog = remember { mutableStateOf(false) }

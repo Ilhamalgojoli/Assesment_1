@@ -44,7 +44,7 @@ import com.ilhamalgojali0081.assesment_1.ui.theme.Assesment_1Theme
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.ErrorHint
 import com.ilhamalgojali0081.assesment_1.ui.theme.component.IconPicker
 import com.ilhamalgojali0081.assesment_1.ui.theme.poppins
-import com.ilhamalgojali0081.assesment_1.ui.theme.viewmodel.ProductRepository
+import com.ilhamalgojali0081.assesment_1.ui.theme.viewmodel.ProductViewModel
 import com.ilhamalgojali0081.assesment_1.util.ViewModelFactory
 
 const val KEY_PRODUCT_ID = "product_id"
@@ -57,7 +57,7 @@ fun FormUbah(
 ) {
     val context = LocalContext.current
     val factory = ViewModelFactory(context)
-    val viewModel: ProductRepository = viewModel(factory = factory)
+    val viewModel: ProductViewModel = viewModel(factory = factory)
     val categories by viewModel.categoryList.collectAsState(initial = emptyList())
 
     var name by remember { mutableStateOf("") }
